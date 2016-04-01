@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/dereklou/Qapitalize/issues"
   },
-  "homepage": "https://github.com/dereklou/Qapitalize#readme"
+  "homepage": "https://github.com/dereklou/Qapitalize#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "dependable": "^0.2.5",
+    "express": "^4.13.4"
+  }
 }
