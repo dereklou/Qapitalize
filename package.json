@@ -1,0 +1,19 @@
+{
+  "name": "qapitalize",
+  "version": "1.0.0",
+  "description": "Solve problems, make money.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dereklou/Qapitalize.git"
+  },
+  "author": "Naseem Al-Naji and Derek Lou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dereklou/Qapitalize/issues"
+  },
+  "homepage": "https://github.com/dereklou/Qapitalize#readme"
+}
