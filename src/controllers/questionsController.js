@@ -1,6 +1,44 @@
 module.exports = function questionsController(
+    db,
     models
   ) {
+
+  var userQuestions = function (req, res) {
+    var user_id = req.params.user_id;
+
+    response = {};
+
+    models.user.where({id: user_id}).fetch({withRelated: [
+      {
+        'questions': function(qb) {
+          qb.orderBy("updated_at", "desc");
+        }
+      }
+    ]})
+    .then(function ( user ) {
+      response = {error: false, questions: user.related('questions')};
+      res.send(response);
+    })
+    .catch(function(err) {
+        response = {error: true, payload: err.message};
+        res.send(response);
+    });
+  }
+
+  var searchQuestions = function (req, res) {
+    var subjects = req.query.subjects.split(',');
+    var response = {};
+    models.question.where("subject_id", "in", subjects).fetchAll()
+      .then(function (questions) {
+        response = {error: false, questions: questions};
+        res.send(response);
+      })
+      .catch(function(err) {
+          response = {error: true, payload: err.message};
+          res.send(response);
+      });
+
+  }
 
   var showQuestion = function (req, res) {
     var question_id = req.params.id;
@@ -66,6 +104,8 @@ module.exports = function questionsController(
   return {
     showQuestion,
     createQuestion,
-    updateQuestion
+    updateQuestion,
+    userQuestions,
+    searchQuestions
   }
 }

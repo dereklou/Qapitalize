@@ -22,6 +22,28 @@ module.exports = function answersController(
       });
   }
 
+  var userAnswers = function (req, res) {
+    var user_id = req.params.user_id;
+
+    response = {};
+
+    models.user.where({id: user_id}).fetch({withRelated: [
+      {
+        'answers': function(qb) {
+          qb.orderBy("created_at", "desc");
+        }
+      }
+    ]})
+    .then(function ( user ) {
+      response = {error: false, answers: user.related('answers')};
+      res.send(response);
+    })
+    .catch(function(err) {
+        response = {error: true, payload: err.message};
+        res.send(response);
+    });
+  }
+
   var createAnswer = function (req, res) {
     var question_id = req.params.question_id;
 
@@ -63,7 +85,8 @@ module.exports = function answersController(
   return {
     showAnswer,
     createAnswer,
-    updateAnswer
+    updateAnswer,
+    userAnswers
   }
 }
 

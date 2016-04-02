@@ -23,6 +23,14 @@ module.exports = function $app(
   router.route("/users/:user_id/questions")
     .post(questionsController.createQuestion);
 
+  router.route("/users/:user_id/questions/index")
+    .get(questionsController.userQuestions);
+  router.route("/users/:user_id/answers/index")
+    .get(answersController.userAnswers);
+
+  router.route("/questions/search")
+    .get(questionsController.searchQuestions);
+
   router.route("/questions/:id")
     .get(questionsController.showQuestion);
   router.route("/questions/:question_id/answers")
@@ -37,6 +45,14 @@ module.exports = function $app(
 
   router.route("/answers/:answer_id/comments")
     .post(commentsController.createComment);
+  router.route("/answers/:answer_id/comments/index")
+    .get(commentsController.answerComments);
+
+  router.route("/subjects/index")
+    .get(subjectsController.allSubjects);
+
+  router.route("/users/:user_id/subjects/index")
+    .get(subjectsController.userSubjects);
 
   router.route("/comments/:id")
     .get(commentsController.showComment);

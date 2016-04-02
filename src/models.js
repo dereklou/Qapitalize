@@ -41,7 +41,7 @@ module.exports = function models(
       return this.belongsTo(question);
     },
     comments: function() {
-      return this.hasMany(comments);
+      return this.hasMany(comment);
     },
   });
 

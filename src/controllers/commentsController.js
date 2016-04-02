@@ -22,6 +22,29 @@ module.exports = function commentsController(
       });
   }
 
+  var answerComments = function (req, res) {
+    var answer_id = req.params.answer_id;
+
+    response = {};
+
+    models.answer.where({id: answer_id}).fetch({withRelated: [
+      {
+        'comments': function(qb) {
+          qb.orderBy("created_at");
+        }
+      }
+    ]})
+    .then(function ( answer ) {
+      response = {error: false, comments: answer.related('comments')};
+      res.send(response);
+    })
+    .catch(function(err) {
+      console.error(err);
+        response = {error: true, payload: err.message};
+        res.send(response);
+    });
+  }
+
   var createComment = function (req, res) {
     var answer_id = req.params.answer_id;
 
@@ -45,7 +68,8 @@ module.exports = function commentsController(
 
   return {
     showComment,
-    createComment
+    createComment,
+    answerComments
   }
 }
 
