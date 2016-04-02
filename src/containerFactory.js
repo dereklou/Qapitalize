@@ -11,7 +11,9 @@ function createContainer() {
   let container = dependable.container();
   let entries   = [
     'app.js',
-    'controllers'
+    'controllers',
+    'db.js',
+    'models.js'
   ];
 
   // load each entry as a module or a directory
