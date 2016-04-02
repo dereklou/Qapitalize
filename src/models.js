@@ -19,6 +19,7 @@ module.exports = function models(
 
   var question = db.bookshelf.Model.extend({
     tableName: 'questions',
+    hasTimestamps: true,
     user: function() {
       return this.belongsTo(user);
     },
@@ -32,6 +33,7 @@ module.exports = function models(
 
   var answer = db.bookshelf.Model.extend({
     tableName: 'answers',
+    hasTimestamps: true,
     user: function() {
       return this.belongsTo(user);
     },
@@ -46,6 +48,7 @@ module.exports = function models(
 
   var comment = db.bookshelf.Model.extend({
     tableName: 'comments',
+    hasTimestamps: true,
     user: function() {
       return this.belongsTo(user);
     },
