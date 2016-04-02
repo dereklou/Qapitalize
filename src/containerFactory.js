@@ -13,7 +13,7 @@ function createContainer() {
     'app.js',
     'controllers',
     'db.js',
-    'models'
+    'models.js'
   ];
 
   // load each entry as a module or a directory

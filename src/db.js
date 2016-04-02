@@ -10,8 +10,8 @@ module.exports = function db() {
 	});
 
 	var bookshelf = require('bookshelf')(knex);
-    
 
+    
 	return {
 		bookshelf
 	}
